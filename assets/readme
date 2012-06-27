@@ -1,0 +1,10 @@
+Directory Structure 
+* Depending on the project features, not all directories are required and therfore may not be present *
+
+avatars		Avatar SWF files
+embeds		Assets which are embedded into the application at compile time.
+games		Location of externally loaded minigame SWF files
+html		HTML wrapper for the application
+images		Images which are loaded at runtime by the application (E.g. room assets)
+sounds		Sounds which are used in the application
+videos		Video files which are used in the application

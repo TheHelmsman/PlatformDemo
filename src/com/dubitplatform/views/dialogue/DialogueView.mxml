@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:DialogueViewBase xmlns:fx="http://ns.adobe.com/mxml/2009" 
+							 xmlns:s="library://ns.adobe.com/flex/spark" 
+							 xmlns:ui="uk.co.dubit.platform.components.scriptedDialogue.ui.*" 
+							 width="600" height="400"
+							 horizontalCenter="0" verticalCenter="0">
+	
+	<fx:Script>
+		<![CDATA[
+			import uk.co.dubit.platform.components.scriptedDialogue.Dialogue;
+			import uk.co.dubit.platform.components.scriptedDialogue.ScriptMessage;
+						
+			override public function onMessageChosen(scriptedDialogue:Dialogue, message:ScriptMessage) : void
+			{
+				currentState = "waitingForResponse";
+			}
+			
+			override public function onResponseReceived(scriptedDialogue:Dialogue, response:ScriptMessage) : void 
+			{
+				currentState = "normal";
+			}
+			
+			override public function onDialogueComplete(scriptedDialogue:Dialogue) : void
+			{
+				feedbackLabel.text = "Conversation over";
+				
+				currentState = "waitingForResponse";
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<ui:states>
+		<s:State name="normal" />
+		<s:State name="waitingForResponse" />
+	</ui:states>
+	
+	<s:TitleWindow width="100%" height="100%"
+				   title="Conversation with { dialogue.recipient.avatarName }"  
+				   close="{ dialogue.close() }">
+		<s:Form width="100%" height="100%">
+			
+			<!-- The message history is a list of messages which have been said in the conversation -->
+			<s:FormItem width="100%" height="100%" label="Message History">
+				
+				<s:List width="100%" height="100%" 
+						dataProvider="{ dialogue.messageHistory }"
+						itemRenderer="com.dubitplatform.views.dialogue.MessageHistoryItemRenderer">
+					<s:layout>
+						<s:VerticalLayout requestedRowCount="7" gap="0" />
+					</s:layout>
+				</s:List>
+				
+			</s:FormItem>
+			
+			<!-- The available messages are the list of messages which the user is able to say at this time -->
+			<s:FormItem width="100%" label="Available Messages"
+						enabled.normal="true" enabled.waitingForResponse="false">
+				<s:List width="100%" dataProvider="{ dialogue.availableMessages }" labelField="text"
+						change="{ dialogue.chooseMessage(event.target.selectedItem) }" />
+			</s:FormItem>
+		</s:Form>
+		
+		<s:Label id="feedbackLabel" horizontalCenter="0" verticalCenter="0" />		
+	</s:TitleWindow>
+	
+</ui:DialogueViewBase>

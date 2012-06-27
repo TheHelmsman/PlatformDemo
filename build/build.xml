@@ -1,0 +1,74 @@
+<project default="config-build" basedir="../">
+
+	<property file="build/build.properties" />
+	
+	<!-- Location of the XsercesXcluer ANT task which merges <xi:include /> tags -->
+	<taskdef name="xcluder" classname="gr.abiss.xcluder.XercesXcluder">
+		<classpath>
+			<pathelement location="build/tasks/xcluder-0.9.2.jar" />
+			<pathelement location="build/tasks/xercesImpl.jar" />
+		</classpath>
+	</taskdef>
+
+	<!-- Builds the none actionscript/flex components of the world by compiling GAML script and moving assets to the 
+	     build directory -->
+	<target name="config-build" depends="-copy-config, -copy-assets, -create-html-wrapper" />
+
+	<target name="-copy-config" description="Merges and copies GAML config to build folder">
+		<echo message="Beginning copying GAML" />
+		
+		<mkdir dir="${dir.bin}/config/rooms" />
+		
+		<!-- Run the includer task over the GAML files contained the root of the "config", and "config/rooms" directories.
+		     The rest of the files in not on the root of those directories are "includes" which don't need to be copied 
+		     over to the build directory -->
+		<xcluder indent="no" destdir="${dir.bin}/config">
+			<fileset dir="config">
+				<include name="*.xml" />
+				<include name="rooms/*.xml" />
+			</fileset>
+		</xcluder>
+		
+		<echo message="Completed copying GAML" />
+	</target>
+
+	<target name="-copy-assets" description="Copies project assets to the build folder">
+		<echo message="Beginning copying assets" />
+		
+		<!-- Copies the images,games,videos,sounds, and avatar directories (if they exist) to the build directory) -->
+		<copy todir="${dir.bin}" overwrite="true">
+			<fileset dir="assets" >
+				<include name="images/**" />
+				<include name="games/**" />
+				<include name="videos/**" />
+				<include name="sounds/**" />
+				<include name="avatars/**" />
+				<exclude name="*/.placeholder" />
+			</fileset>
+		</copy>
+					
+		<echo message="Completed copying assets" />
+	</target>
+
+	<target name="-create-html-wrapper" description="Creates HTML wrapper for the project">
+		<echo message="Beginning creating HTML wrapper" />
+		
+		<!-- Copy over all files in the assets/html directory, apart from the index.html file which is treated differently -->
+		<copy todir="${dir.bin}" includeEmptyDirs="false">
+			<fileset dir="assets/html">
+				<exclude name="index.html" />
+			</fileset>
+		</copy>
+		
+		<!-- Copy the index.html whilst replacing the @swfname@ paramater using the value set in the build.properties file -->
+		<copy todir="${dir.bin}" file="assets/html/index.html">
+			<filterchain>
+				<replacetokens>
+					<token key="swfname" value="${build.application}.swf" />
+				</replacetokens>
+			</filterchain>
+		</copy>
+		
+		<echo message="Completed creating HTML wrapper" />
+	</target>	
+</project>

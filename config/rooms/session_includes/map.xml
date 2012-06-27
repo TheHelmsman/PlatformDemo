@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+	
+	<Map skin="com.dubitplatform.views.map.MapView" skinContainer="generic">
+		<Location name="Example Room 1" roomID="example_room" />
+		<Location name="Example Room 2" roomID="example_room_2" />
+		
+		<Triggers>
+			<onChangeRoom>
+				<ChangeRoom roomID="{Event.roomID}">
+					<onFault>
+						<Alert message="Error changing room.  Returning to previous room" />
+						
+						<ChangeRoom roomID="{Rooms.lastRoomID}" />
+					</onFault>
+				</ChangeRoom>
+			</onChangeRoom>
+		</Triggers>
+	</Map>
+</Include>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<ExperienceBars skin="com.dubitplatform.views.experience.ExperienceBarsView" skinContainer="generic">
+		<ExperienceBar id="xpBar">
+			<Level name="Novice" points="0" />
+			<Level name="Journeyman" points="100" />
+			<Level name="Professional" points="200" />
+			<Level name="Superstar" points="500" />
+			<Level name="Winner" points="1200" />
+		</ExperienceBar>
+	</ExperienceBars>
+	
+</Include>

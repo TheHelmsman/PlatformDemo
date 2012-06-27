@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:skin="uk.co.dubit.platform.components.skin.*"
+			   addedToStage="{ NexusApplication.init(this, CustomIncludes); }">
+	
+	<fx:Script>
+		<![CDATA[
+			import uk.co.dubit.platform.app.NexusApplication;
+		]]>
+	</fx:Script>
+	
+	<!-- SkinContainers are placeholders in the display tree in which GAML defined UI components are placed -->
+	<s:Group width="1024" height="768" horizontalCenter="0" verticalCenter="0" clipAndEnableScrolling="true">
+		
+		<!-- The chat room scene in placed here.  This is usually placed below all other UI components -->
+		<skin:BasicSkinContainer width="100%" height="100%" containerID="chatRoom"/>
+		
+		<!-- Interface elements which are always onscreen are usually placed in here -->
+		<skin:BasicSkinContainer width="100%" height="100%" containerID="interface"/>	
+
+		<!-- Generic container for all other UI elements -->
+		<skin:BasicSkinContainer width="100%" height="100%" containerID="generic"/>	
+		
+		<!-- Dialogue view container.  This is on top of generic UI components so that they don't distract the player -->
+		<skin:BasicSkinContainer width="100%" height="100%" containerID="dialogue"/>
+		
+		<!-- Room Change view should be placed in here.  Usually during a room change all other views are hidden -->
+		<skin:BasicSkinContainer width="100%" height="100%" containerID="changeRoom"/>
+		
+		<!-- Debug views should be placed into this container -->
+		<skin:BasicSkinContainer width="100%" height="100%" containerID="debug" />
+	</s:Group>	
+</s:Application>

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ChatRoom id="example_room" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<xi:include href="room_includes/room_config.xml"/>
+		
+	<CollisionMap assetID="hit_asset" />
+
+	<Filters id="playerFilters">
+		<DepthFilter scaleBack="0.3" scaleFront="1"/>
+		<LightMapFilter assetID="light_filter_asset" />
+	</Filters>
+	
+	<SpawnPoints defaultRoomID="none">
+		<SpawnPoint roomID="none" x="900" y="600" />
+	</SpawnPoints>
+	
+	<Sounds target="{Room.player}">
+		<StreamingSound id="stream" url="sounds/example_room/stream.mp3" play="false" looping="true" x="650" y="780" carry="300" strength="0.7"/>
+		<StreamingSound id="woodland" url="sounds/example_room/woodland.mp3" play="true" looping="true" strength="0.5"/>
+		<StreamingSound id="winch" url="sounds/example_room/winch.mp3" play="false" looping="false" />
+		
+		<StreamingSound id="mushroom_12_sound" url="sounds/example_room/mushroom_12.mp3" play="false" looping="false" />
+		<StreamingSound id="mushroom_11_sound" url="sounds/example_room/mushroom_11.mp3" play="false" looping="false" />
+		<StreamingSound id="mushroom_10_sound" url="sounds/example_room/mushroom_10.mp3" play="false" looping="false" strength="2"/>
+		<StreamingSound id="mushroom_7_sound" url="sounds/example_room/mushroom_7.mp3" play="false" looping="false" />
+		<StreamingSound id="mushroom_4_sound" url="sounds/example_room/mushroom_4.mp3" play="false" looping="false" />
+	</Sounds>
+
+	<Scene target="{Room.player}" viewportWidth="1024" viewportHeight="768" width="1500" height="900">
+		
+		<ParallaxLayer assetID="sky_asset" xm="0.4" ym="0.4" />
+		
+ 		<ParallaxLayer mouseEnabled="false" xm="0.6" ym="0.6">
+			<DisplayObject2D assetID="far_trees_asset" x="0" y="78"  />
+		</ParallaxLayer>
+		
+		<ParallaxLayer mouseEnabled="false" xm="0.8" ym="0.8">
+			<DisplayObject2D assetID="mid_trees_asset" x="131" y="135"  />
+		</ParallaxLayer>
+	
+		<DisplayObject2D assetID="background_asset"  />
+		
+		<DisplayObject2D id="click" assetID="click_asset" mouseEnabled="true" clickThrough="true" alpha="0"/>
+		<DisplayObject2D id="door" assetID="door_asset" x="911" y="467" distance="80" alpha="1"/>
+	 
+		<ZSortingDisplayObject id="furniture">
+			<DisplayObject2D id="well" assetID="well_asset" x="1247" y="({Room.well.originY}+{429})" originY="140" mouseEnabled="true" useHandCursor="true" scale="0.95" tooltip="Ye Olde Well"/>
+			<DisplayObject2D id="house" assetID="house_asset" x="1003" y="({Room.house.originY}+{144})" originX="269" originY="354" />
+			<DisplayObject2D id="window" assetID="window_asset" x="867" y="({Room.window.originY}+{375})" originY="154" />
+			<DisplayObject2D id="egg" assetID="egg_asset" x="630" y="({Room.egg.originY}+{486})" originX="43" originY="50" />
+ 			<DisplayObject2D id="sign" assetID="sign_asset" x="151" y="({Room.sign.originY}+{536})" originX="74" originY="211" frame="0"/>
+			<DisplayObject2D id="mushroom_12" assetURL="images/example_room/mushroom.swf" x="924" y="({Room.mushroom_10.originY}+{570})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.6" clicked="false" tooltip="Musical Mushroom" rotate="325"/>
+			<DisplayObject2D id="mushroom_11" assetURL="images/example_room/mushroom.swf" x="1144" y="({Room.mushroom_10.originY}+{400})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.4" clicked="false" tooltip="Musical Mushroom" rotate="25"/>
+			<DisplayObject2D id="mushroom_10" assetURL="images/example_room/mushroom.swf" x="1324" y="({Room.mushroom_10.originY}+{645})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.7" clicked="false" tooltip="Musical Mushroom" />
+ 			<DisplayObject2D id="mushroom_8" assetID="mushroom_8_asset" x="1481" y="({Room.mushroom_8.originY}+{576})" originX="12" originY="19" /> -->
+			<DisplayObject2D id="mushroom_7" assetURL="images/example_room/mushroom.swf" x="1414" y="({Room.mushroom_7.originY}+{440})" originX="28" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.5" clicked="false" tooltip="Musical Mushroom" />
+ 			<DisplayObject2D id="mushroom_6" assetID="mushroom_6_asset" x="1416" y="({Room.mushroom_6.originY}+{565})" originX="17" originY="29" />
+ 			<DisplayObject2D id="mushroom_5" assetID="mushroom_5_asset" x="600" y="({Room.mushroom_5.originY}+{530})" originX="12" originY="20" />
+			<DisplayObject2D id="mushroom_4" assetURL="images/example_room/mushroom.swf" x="532" y="({Room.mushroom_4.originY}+{394})" originX="28" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.5" clicked="false" tooltip="Musical Mushroom" />
+			<DisplayObject2D id="mushroom_3" assetID="mushroom_3_asset" x="534" y="({Room.mushroom_3.originY}+{519})" originX="17" originY="29" />
+			<DisplayObject2D id="mushroom_2" assetID="mushroom_2_asset" x="176" y="({Room.mushroom_2.originY}+{698})" originX="25" originY="41" />
+			<DisplayObject2D id="mushroom_1" assetID="mushroom_1_asset" x="125" y="({Room.mushroom_1.originY}+{699})" originX="30" originY="56" />
+			<DisplayObject2D id="stump" assetID="stump_asset" x="1006" y="({Room.stump.originY}+{648})" originX="88" originY="132" />
+			<DisplayObject2D id="bridge_front" assetID="bridge_front_asset" x="320" y="842" originY="230"  />
+			<DisplayObject2D id="bridge_back" assetID="bridge_back_asset" x="277" y="635" originY="96"  />
+			<DisplayObject2D id="flowers_4" assetID="flowers_4_asset" x="873" y="767" originX="42" originY="63" />
+			<DisplayObject2D id="flowers_3" assetID="flowers_3_asset" x="781" y="954" originX="156" originY="172" />
+			<DisplayObject2D id="flowers_2" assetID="flowers_2_asset" x="128" y="677" originX="35" originY="60" />
+			<DisplayObject2D id="flowers_1" assetID="flowers_1_asset" x="226" y="926" originX="147" originY="178" />
+		</ZSortingDisplayObject>
+		
+		<DisplayObject2D id="coll" assetID="coll_1_asset" x="912" y="517" collidable="true" distance="170" alpha="0"/>	
+		
+		<ParallaxLayer mouseEnabled="false" xm="1.2" ym="1">
+			<DisplayObject2D assetID="foreground_tree_3_asset" x="1160" y="0" />
+			<DisplayObject2D assetID="foreground_tree_2_asset" x="859" y="0" />
+			<DisplayObject2D assetID="foreground_tree_1_asset" x="0" y="0"  />
+			<DisplayObject2D assetID="fore_left_asset" x="0" y="709"  />
+			<DisplayObject2D assetID="fore_right_asset" x="712" y="555" />
+		</ParallaxLayer>
+				
+		<ZSortingDisplayObject id="playerMessages"/>
+	</Scene>
+	
+	<Assets>
+        <Asset id="hit_asset" url="images/example_room/hit.png"/>
+        <Asset id="click_asset" url="images/example_room/click.png"/>
+        <Asset id="light_filter_asset" url="images/example_room/light.jpg"/>		
+		<Asset id="background_asset" url="images/example_room/background.png"/>
+		<Asset id="sky_asset" url="images/example_room/sky.jpg" />	
+		<Asset id="far_trees_asset" url="images/example_room/far_trees.png" />
+		<Asset id="mid_trees_asset" url="images/example_room/mid_trees.png" />
+		<Asset id="well_asset" url="images/example_room/well.swf" />
+		<Asset id="house_asset" url="images/example_room/house.png" />
+		<Asset id="window_asset" url="images/example_room/windows.swf" />
+		<Asset id="egg_asset" url="images/example_room/egg.png" />
+ 		<Asset id="sign_asset" url="images/example_room/sign.swf" />
+		<Asset id="mushroom_10_asset" url="images/example_room/mushroom_10.png" />
+		<Asset id="mushroom_8_asset" url="images/example_room/mushroom_8.png" />
+		<Asset id="mushroom_7_asset" url="images/example_room/mushroom_7.png" />
+		<Asset id="mushroom_6_asset" url="images/example_room/mushroom_6.png" />
+		<Asset id="mushroom_5_asset" url="images/example_room/mushroom_5.png" />
+		<Asset id="mushroom_4_asset" url="images/example_room/mushroom_4.png" />
+		<Asset id="mushroom_3_asset" url="images/example_room/mushroom_3.png" />
+		<Asset id="mushroom_2_asset" url="images/example_room/mushroom_2.png" />
+		<Asset id="mushroom_1_asset" url="images/example_room/mushroom_1.png" />
+		<Asset id="stump_asset" url="images/example_room/stump.png" />
+		<Asset id="bridge_front_asset" url="images/example_room/bridge_front.png" />
+		<Asset id="bridge_back_asset" url="images/example_room/bridge_back.png" />
+		<Asset id="flowers_4_asset" url="images/example_room/flowers_4.png" />
+		<Asset id="flowers_3_asset" url="images/example_room/flowers_3.png" />
+		<Asset id="flowers_2_asset" url="images/example_room/flowers_2.png" />
+		<Asset id="flowers_1_asset" url="images/example_room/flowers_1.png" />
+		<Asset id="foreground_tree_3_asset" url="images/example_room/foreground_tree_3.png" />
+		<Asset id="foreground_tree_2_asset" url="images/example_room/foreground_tree_2.png" />
+		<Asset id="foreground_tree_1_asset" url="images/example_room/foreground_tree_1.png" />
+		<Asset id="fore_left_asset" url="images/example_room/fore_left.png" />
+		<Asset id="fore_right_asset" url="images/example_room/fore_right.png" />
+		<Asset id="coll_1_asset" url="images/example_room/coll_1.png" />
+		<Asset id="door_asset" url="images/example_room/door.gif" />
+	</Assets>	
+	
+	<Triggers>
+		<onFixup>
+			<GotoAndStop gameObject="{Room.well}" frame="1"/>
+			<GotoAndStop gameObject="{Room.mushroom_4}" frame="1"/>
+			<GotoAndStop gameObject="{Room.mushroom_7}" frame="1"/>
+			<GotoAndStop gameObject="{Room.mushroom_10}" frame="1"/>
+			<GotoAndStop gameObject="{Room.mushroom_11}" frame="1"/>
+			<GotoAndStop gameObject="{Room.mushroom_12}" frame="1"/>
+			<GotoAndStop gameObject="{Room.window}" frame="1"/>
+			<GotoAndStop gameObject="{Room.sign}" frame="1"/>
+		
+			<PlaySound sound="{Room.woodland}" delay="10000"/>
+			<PlaySound sound="{Room.stream}" delay="3000"/>
+		</onFixup>
+	</Triggers>
+	
+	<Trigger gameObject="{Room.click}" event="onClick">
+		<MoveTo gameObject="{Room.player}" targetX="{Event.x}" targetY="{Event.y}" />
+	</Trigger>
+	
+	<Trigger gameObject="{Room.well}" event="onClick">
+		<GotoAndPlay gameObject="{Room.well}" frame="2"/>
+		<SetValues target="{Room.well}" mouseEnabled="false" useHandCursor="false" />
+		<SetValues target="{Room.well}" mouseEnabled="true" useHandCursor="true" delay="3000"/>
+		<PlaySound sound="{Room.winch}" />
+	</Trigger>
+	
+	<Trigger gameObject="{Room.coll}" event="onEnterCollision">
+		<GotoAndPlay gameObject="{Room.window}" frame="({91}-{Room.collisionStatus.currentFrame})" if="({Room.collisionStatus.currentFrame}!={0})">
+			<Frame>
+				<GotoAndPlay gameObject="{Room.window}" frame="19" if="({Event.frame}=={74})" />
+			</Frame>
+		</GotoAndPlay>
+		<GotoAndPlay gameObject="{Room.window}" frame="2" if="({Room.collisionStatus.currentFrame}=={0})">
+			<Frame>
+				<GotoAndPlay gameObject="{Room.window}" frame="19" if="({Event.frame}=={74})" />
+			</Frame>
+		</GotoAndPlay>
+	</Trigger>
+	
+	<Trigger gameObject="{Room.coll}" event="onExitCollision">
+		<GotoAndPlay gameObject="{Room.window}" frame="75">
+			<Frame>
+				<SetValues target="{Room.collisionStatus}" currentFrame="{Event.frame}" />
+				<SetValues target="{Room.collisionStatus}" currentFrame="0" if="({Event.frame}=={92})" />
+			</Frame>
+		</GotoAndPlay>
+	</Trigger>
+	
+	 <Trigger gameObject="{Room.mushroom_4}" event="onClick">
+		<GotoAndPlay gameObject="{Room.mushroom_4}" frame="2" />
+		<PlaySound sound="{Room.mushroom_4_sound}" />
+		<AwardExperiencePoints experienceBar="xpBar" points="20" />
+	 </Trigger>
+	
+	 <Trigger gameObject="{Room.mushroom_7}" event="onClick">
+		<GotoAndPlay gameObject="{Room.mushroom_7}" frame="2" /> 
+		<PlaySound sound="{Room.mushroom_7_sound}" />
+		<AwardExperiencePoints experienceBar="xpBar" points="20" />
+	 </Trigger>
+	
+	 <Trigger gameObject="{Room.mushroom_10}" event="onClick">
+		<GotoAndPlay gameObject="{Room.mushroom_10}" frame="2" />
+		<PlaySound sound="{Room.mushroom_10_sound}" />
+		<AwardExperiencePoints experienceBar="xpBar" points="20" />
+	 </Trigger>
+	
+	 <Trigger gameObject="{Room.mushroom_11}" event="onClick">
+		<GotoAndPlay gameObject="{Room.mushroom_11}" frame="2" />
+		<PlaySound sound="{Room.mushroom_11_sound}" />		
+		<AwardExperiencePoints experienceBar="xpBar" points="20" />
+	 </Trigger>
+	
+	 <Trigger gameObject="{Room.mushroom_12}" event="onClick">
+		<GotoAndPlay gameObject="{Room.mushroom_12}" frame="2" />
+		<PlaySound sound="{Room.mushroom_12_sound}" />		
+		<AwardExperiencePoints experienceBar="xpBar" points="20" />
+	 </Trigger>
+	
+	<GameObject id="collisionStatus" currentFrame="0"/>
+	
+	<BehaviourDefinition id="playAgain">
+		<GotoAndPlay gameObject="{Room.window}" frame="2" if="({Room.collisionStatus.canPlay}=={true})"/>
+		<Call behaviourID="playAgain" if="({Room.collisionStatus.canPlay}=={false})" delay="500"/>
+	</BehaviourDefinition>	
+</ChatRoom>	

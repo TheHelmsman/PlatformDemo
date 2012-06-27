@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Configuration for debug logging in the application.  
+     Multiple LogTargets can be specified which can output log information to different destinations -->
+<logging>
+
+	<!-- Default log target which outputs all log data to the console.  Applicable levels are [ALL|INFO|WARN|ERROR|FATAL] -->
+	<logTarget type="mx.logging.targets.TraceTarget" level="WARN" includeDate="false" includeTime="false" includeCategory="true" includeLevel="true" />	
+</logging>

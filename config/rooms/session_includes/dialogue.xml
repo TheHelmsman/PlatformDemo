@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Dialogues>
+		<Dialogue id="standard_dialogue" skin="com.dubitplatform.views.dialogue.DialogueView" skinContainer="dialogue" />
+	</Dialogues>
+	
+	<Script id="talk_to_myself" message="Hey! Hey you!">
+		<Script message="Hello?" message2="Who's this?">
+			<Script message="It's you!" message2="You're talking to yourself">			
+				<Script>
+					<ScriptMessage text="Well, I might as well award myself 500 XP while I'm here" xp="500" />
+					<ScriptMessage text="I don't like this one bit.  I need 250 XP to calm me down" xp="250" />
+					
+					<MessageActions>
+						<AwardExperiencePoints experienceBar="xpBar" points="{Event.message.xp}" />
+					</MessageActions>
+				</Script>
+			</Script>
+		</Script>
+	</Script>
+</Include>

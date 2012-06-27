@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+		
+	<!-- Definition of players in the room -->
+	<PlayerDefinition id="playerDefinition"
+					  originX="54" originY="264"
+					  nameOriginX="0" nameOriginY="0" 
+					  assetURL="avatars/avatar.swf"
+					  mouseEnabled="true" mouseChildren="false" useHandCursor="true"
+					  location="furniture" 
+					  filters="{Room.playerFilters}" 
+					  angle="90" defaultSpeed="24"
+					  flip="true"
+					  nameBubbleClass="com.dubitplatform.world.avatar.NameBubble"
+					  displayObjectClass="uk.co.dubit.graphics.render2D.SWFActionPlayer">
+		<Actions>
+			<Stand name="idle" />
+			<Walk name="walk" />
+		</Actions>
+		
+		<Triggers>
+			<onClick>
+				<If expression="{Event.handler.isCurrentUsersAvatar}">
+					<Then>
+						<StartNPCDialogue dialogue="standard_dialogue" statement="{Session.talk_to_myself}" recipient="{Event.handler}" />
+					</Then>
+				</If>
+			</onClick>
+		</Triggers>
+		
+	</PlayerDefinition>
+</Include>

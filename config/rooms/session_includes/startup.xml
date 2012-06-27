@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Startup.xml contains the GAML needed to login to the Nexus Game Server and connect to the first room in the world -->
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Channel id="roomChannel" type="{Properties.[setting.connectionType]}" endpoint="{Properties.[path.game-server]}">
+		<Triggers>
+			<connectionSuccess>
+				<Trace message="---Connected to the Nexus Game Server---" />
+						
+				<Call behaviourID="joinWorld" />
+			</connectionSuccess>
+
+			<connectionFailed>
+				<Alert title="CONNECTION FAILED" message="Connection failed" />
+			</connectionFailed>
+
+			<connectionLost>
+				<Alert title="CONNECTION LOST" message="Connection lost" />
+			</connectionLost>
+
+			<connectionError>
+				<Alert title="CONNECTION FAILED" message="Connection failed" />
+			</connectionError>
+		</Triggers>
+	</Channel>
+
+	<NotificationHandler namespace="session" channel="roomChannel">
+		<Triggers>
+			<!--  No custom handers needed.  But do not delete the notification handler as it is still needed! -->
+		</Triggers>
+	</NotificationHandler>
+	
+	<BehaviourDefinition id="joinWorld">	
+		<Trace message="Join world called" />
+		
+		<ShowBusyCursor/>
+		
+		<LoadClothingLayers>
+			<Result>
+				<If expression="{Session.isLoggedIn}">
+					<Then>		
+						<LoadFirstAvatar>
+							<Result>								
+								<EnterSession>
+									<Result>																				
+										<ChangeRoom roomID="{Properties.[setting.rooms.default-room]}">
+											<onJoinRoomComplete>
+												<HideCustomCursor/>
+												
+												<ShowSkin skin="com.dubitplatform.views.InterfaceView" skinContainer="interface" />
+											</onJoinRoomComplete>	
+										</ChangeRoom>	
+									</Result>
+									<Fault>
+										<Alert title="CONNECTION FAILED" 
+											   message="Sorry, an error occured when connecting to the server!" />
+									</Fault>
+								</EnterSession>
+							</Result>
+							<Fault>
+								<!-- Take action depending on the type of error -->
+								<Switch value="error{Event.httpStatusError.errorID}">
+									<error204>
+										<!-- Unable to load avatar.  Likely that they just don't have an avatar yet.  
+									          Proceed to setup and open an avatar editor which has the ability to create avatars -->					
+										<Call behaviourID="showLoginOrCreateAvatar" />
+									</error204>
+									<default>
+										<Alert title="CONNECTION FAILED" 
+											   message="Sorry, an error occured when connecting to the server! [Error=LoadFirstAvatar]" />
+									</default>
+								</Switch>
+							</Fault>
+						</LoadFirstAvatar>
+					</Then>
+					<Else>
+						<Call behaviourID="showLoginOrCreateAvatar" />
+					</Else>
+				</If>
+			</Result>
+			<Fault>
+				<Alert title="CONNECTION FAILED" 
+					   message="Sorry, an error occured when connecting to the server! [Error=LoadClothingLayers]" />
+			</Fault>
+		</LoadClothingLayers>
+	</BehaviourDefinition>
+	
+	<BehaviourDefinition id="showLoginOrCreateAvatar">
+		<HideCustomCursor/>
+		
+		<GetDefaultPackages>
+			<Result>
+				<OpenAvatarEditor avatarEditor="loginOrCreateAvatar" />
+			</Result>
+		</GetDefaultPackages>
+		
+		
+	</BehaviourDefinition>
+</Include>

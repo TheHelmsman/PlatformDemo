@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<skin:CanvasSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:skin="uk.co.dubit.platform.components.skin.*" 
+				 width="100%" height="100%">
+	<fx:Script>
+		<![CDATA[
+			import uk.co.dubit.platform.components.backpack.Backpack;
+			import uk.co.dubit.platform.components.experienceBars.ExperienceBars;
+			import uk.co.dubit.platform.components.map.Map;
+
+		]]>
+	</fx:Script>
+		
+	<s:Label horizontalCenter="0" text="{ ExperienceBars.getInstance().getExperienceBarByID('xpBar').points }" />
+	
+	<s:HGroup bottom="5" left="5" right="5">
+		<s:Button label="Map" click="{ Map.getInstance().toggleOpen() }" />
+		<s:Button label="Backpack" click="{ Backpack.getInstance().toggleOpen() }" />
+		<s:Button label="Experience" click="{ ExperienceBars.getInstance().toggleOpen() }" />
+	</s:HGroup>
+	
+</skin:CanvasSkin>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Quests>
+		<CompleteObjectives>
+			<ReachLevelObjective experienceBar="xpBar" level="Professional" description="Become a professional" />
+		</CompleteObjectives>
+		
+		<Triggers>
+			<onQuestCompleted>
+				<AddToBackpack possession="tomato_possession" />
+			</onQuestCompleted>
+		</Triggers>
+	</Quests>
+</Include>

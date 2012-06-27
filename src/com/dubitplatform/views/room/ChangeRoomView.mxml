@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ui:ChatRoomPreloaderViewBase xmlns:fx="http://ns.adobe.com/mxml/2009" 
+							  xmlns:s="library://ns.adobe.com/flex/spark" 
+							  xmlns:ui="uk.co.dubit.platform.components.rooms.ui.*" 
+							  width="100%" height="100%">
+	
+	<!-- This view is shown between room changes.  It is able to hook into the room change progress and show feedback 
+	     to the user.  -->
+	
+	<fx:Declarations>		
+		<s:Fade id="fadeIn" target="{ this }" alphaFrom="0" alphaTo="1" effectEnd="{ completeCallback() }" />
+		<s:Fade id="fadeOut" target="{ this }" alphaFrom="1" alphaTo="0" duration="1000" effectEnd="{ completeCallback() }" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import uk.co.dubit.platform.components.rooms.RoomState;
+			
+			private var completeCallback:Function;
+			
+			override public function showPreloader(completeCallBack:Function) : void
+			{
+				this.completeCallback = completeCallBack;
+				
+				fadeIn.play();
+			}
+			
+			override public function hidePreloader(completeCallBack:Function) : void
+			{
+				this.completeCallback = completeCallBack;
+				
+				fadeOut.play();
+			}
+			
+			override public function progressChange(progress:Number) : void
+			{
+				if(roomModel.changeRoomState == RoomState.LOAD_ASSETS)
+				{
+					progressLabel.text = "Loading... " + Math.round(progress * 100) + "%";
+				}
+				
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Rect width="100%" height="100%">
+		<s:fill>
+			<s:SolidColor color="black" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label id="progressLabel" horizontalCenter="0" verticalCenter="0" color="white" />
+	
+	
+</ui:ChatRoomPreloaderViewBase>

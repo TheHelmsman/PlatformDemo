@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+	<AvatarEditors>
+		<AvatarEditor id="loginOrCreateAvatar" skin="com.dubitplatform.views.avatarCreator.LoginOrCreateAvatarView" skinContainer="generic">
+			<Triggers>	
+				<onLogin>
+					<Login username="{Event.username}" password="{Event.password}">
+						<Result>
+							<CloseAvatarEditor avatarEditor="{Event.avatarEditor}" />
+							
+							<Call behaviourID="joinWorld" /> <!-- startup.xml -->
+						</Result>
+						<Fault>
+							<Alert message="Your username/password was incorrect" />
+						</Fault>
+					</Login>
+				</onLogin>
+							
+				<onCreateAvatar>
+					<CreateUser username="{Event.username}" password="{Event.password}">
+						<Result>
+							<CreateAvatar avatar="{Event.avatar}">
+								<Result>
+									<CloseAvatarEditor avatarEditor="{Event.avatarEditor}" />
+									
+									<Call behaviourID="joinWorld" /> <!-- startup.xml -->
+								</Result>
+							</CreateAvatar>
+						</Result>
+					</CreateUser>
+				</onCreateAvatar>
+			</Triggers>
+		</AvatarEditor>
+	</AvatarEditors>
+</Include>
