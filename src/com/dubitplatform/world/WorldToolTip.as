@@ -3,7 +3,7 @@ package com.dubitplatform.world
 	import com.dubitplatform.shared.DemoToolTip;
 	import com.hybrid.ui.ToolTip;
 	
-	import uk.co.dubit.graphics.render2D.tooltip.AbstractToolTip;
+	import uk.co.dubit.graphics.type.tooltip.AbstractToolTip;
 	
 	/** 
 	 * The world tooltip uses the same tooltip as used in the Flex UI.  This class is simply a wrapper around it.  Any
@@ -21,7 +21,7 @@ package com.dubitplatform.world
 		
 		override public function show() : void
 		{
-			if(toolTipText) toolTip.show(renderObject.displayObject.sprite, toolTipText);
+			//if(toolTipText) toolTip.show(renderObject.displayObject.sprite, toolTipText);
 		}
 		
 		override public function hide() : void

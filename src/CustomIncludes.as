@@ -9,8 +9,8 @@ package
 	import com.dubitplatform.views.room.ChangeRoomView;
 	import com.dubitplatform.views.room.ChatRoomView;
 	import com.dubitplatform.world.WorldToolTip;
-	import com.dubitplatform.world.avatar.ChatBubble;
-	import com.dubitplatform.world.avatar.NameBubble;
+	
+	import flash.net.registerClassAlias;
 
 	/**
 	 *  This file should include references to your custom GAML skins/behaviours which otherwise would not
@@ -32,9 +32,25 @@ package
 		
 		private var exampleWorldComponents:Array = [
 			// These are visual components used in the world itself.
-			ChatBubble,
-			NameBubble,
 			WorldToolTip
 		];
+		
+		// Embedded assets with class aliases required to allow GAML to reference them
+		
+		[Embed(source="assets/embeds/avatar_animation_data.dat", mimeType="application/octet-stream")]
+		private var avatarAnimationData:Class;
+		
+		[Embed(source="assets/embeds/chat_bubble/body.png")]
+		private var chatBubbleBody:Class;
+		
+		[Embed(source="assets/embeds/chat_bubble/tail.png")]
+		private var chatBubbleTail:Class;
+		
+		public function CustomIncludes()
+		{
+			registerClassAlias("AnimationData" ,avatarAnimationData);
+			registerClassAlias("ChatBubbleBody" ,avatarAnimationData);
+			registerClassAlias("ChatBubbleTail" ,avatarAnimationData);
+		}
 	}
 }

@@ -2,7 +2,7 @@
 <skin:CanvasSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
 				 xmlns:skin="uk.co.dubit.platform.components.skin.*" 
-				 width="100%" height="100%">
+				 width="1024" height="768">
 	<fx:Script>
 		<![CDATA[
 			import uk.co.dubit.platform.components.backpack.Backpack;
@@ -12,7 +12,7 @@
 		]]>
 	</fx:Script>
 		
-	<s:Label horizontalCenter="0" text="{ ExperienceBars.getInstance().getExperienceBarByID('xpBar').points }" />
+	<s:Label horizontalCenter="0" y="5" text="Experience Points: { ExperienceBars.getInstance().getExperienceBarByID('xpBar').points }" />
 	
 	<s:HGroup bottom="5" left="5" right="5">
 		<s:Button label="Map" click="{ Map.getInstance().toggleOpen() }" />

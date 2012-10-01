@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Movements>
+		<Movement id="randomPathMovement" class="uk.co.dubit.platform.components.movement.RandomPathMovement" />
+		<Movement id="path" class="uk.co.dubit.platform.components.movement.PathMovement" />
+		<Movement id="pathFinding" class="uk.co.dubit.platform.components.movement.PathFindingMovement" />
+		<Movement id="moveTowards" class="uk.co.dubit.platform.components.movement.MoveTowards" />
+		<Movement id="approximateFollow" class="uk.co.dubit.platform.components.movement.ApproximateFollow" />
+	</Movements>
+</Include>
+	

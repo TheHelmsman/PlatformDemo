@@ -1,22 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Include xmlns:xi="http://www.w3.org/2001/XInclude">
+
+	<ChatBubbleDefinition id="chatBubble" 
+						  bubbleClass="ChatBubbleBody" tailClass="ChatBubbleTail" tailOffsetY="-2"
+						  paddingLeft="10" paddingRight="10" paddingBottom="8" paddingTop="8" smoothing="0.1"
+						  location="playerMessages" scale9Grid="13,10,13,38" offsetY="-415" maxHeight="120"
+						  screenBuffer="10" font="ChatBubbleFont" fontSize="14" embedFonts="true" />
+											  
+	<GameObjectDefinition id="avatarNameBubble"
+						  class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.TrackingRenderObject"
+						  starlingDisplayObjectClass="uk.co.dubit.graphics.type.starling.StarlingTextDisplayObject"
+						  flashDisplayObjectClass="uk.co.dubit.graphics.type.flash.FlashTextDisplayObject"
+						  text="{This.owner.avatarName}"
+						  target="{This.owner}"
+						  location="furniture" originY="-10"
+						  fontSize="14" font="Arial" colour="0xFFFFFF" />
 		
 	<!-- Definition of players in the room -->
 	<PlayerDefinition id="playerDefinition"
-					  originX="54" originY="264"
-					  nameOriginX="0" nameOriginY="0" 
-					  assetURL="avatars/avatar.swf"
+					  animationData="AnimationData"
+					  originX="147" originY="600"
+					  assetURL="avatars/sample_avatar.zip"
 					  mouseEnabled="true" mouseChildren="false" useHandCursor="true"
 					  location="furniture" 
 					  filters="{Room.playerFilters}" 
-					  angle="90" defaultSpeed="24"
-					  flip="true"
-					  nameBubbleClass="com.dubitplatform.world.avatar.NameBubble"
-					  displayObjectClass="uk.co.dubit.graphics.render2D.SWFActionPlayer">
-		<Actions>
-			<Stand name="idle" />
-			<Walk name="walk" />
-		</Actions>
+					  angle="90" defaultSpeed="120">
+				
+		<!--  Place-holder for the name bubble.  -->	  
+		<GameObject definitionID="avatarNameBubble" />
+					  
+		<Animations defaultStationary="stand" defaultMoving="walk">
+			<Animation name="stand" directions="2" offsetAngle="90" flip="true" />
+			<Animation name="walk" directions="2" offsetAngle="90" flip="true" />
+		</Animations>
 		
 		<Triggers>
 			<onClick>

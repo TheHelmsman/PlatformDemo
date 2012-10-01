@@ -2,8 +2,6 @@
 <!--  The bindings file contains a list of all the GAML tags available to be used in a project. -->
 <Bindings>
 	<Package name="Internals">
-		<Binding name="Attributes" type="ignore"/>
-		<Binding name="Attribute" type="ignore"/>
 		<Binding name="Include" type="pass"/>
 		<Binding name="Behaviour" class="uk.co.dubit.platform.scriptEngine.behaviour.Behaviour" factory="uk.co.dubit.platform.scriptEngine.behaviour.BehaviourFactory"/>
 		<Binding name="BehaviourDefinition" factory="uk.co.dubit.platform.scriptEngine.behaviour.BehaviourDefinitionFactory"/>
@@ -36,12 +34,21 @@
 	
 	<Package name="Definitions">
 		<GameObjectBinding name="GameObjectDefinition" class="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectDefinition" />
+		
 		<GameObjectBinding name="DisplayObjectDefinition" class="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectDefinition" >
-			<Attribute name="class" defaultValue="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.RenderGameObject"/>
+			<Attribute name="class" defaultValue="uk.co.dubit.platform.scriptEngine.gameObject.types.render.RenderGameObject"/>
 		</GameObjectBinding>
 		
 		<GameObjectBinding name="PlayerDefinition" class="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectDefinition">
 			<Attribute name="class" defaultValue="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.Character" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashTextureAtlasAvatar" />
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingTextureAtlasAvatar" />
+		</GameObjectBinding>
+		
+		<GameObjectBinding name="ChatBubbleDefinition" class="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectDefinition">
+			<Attribute name="class" defaultValue="uk.co.dubit.platform.scriptEngine.gameObject.types.render.RenderGameObject" />
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashChatBubble" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingChatBubble" />
 		</GameObjectBinding>
 		
 		<GameObjectBinding name="NotificationDefinition" class="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectDefinition">
@@ -276,22 +283,6 @@
 			<Branch name="OnLeaveRoomComplete" description="Fired when the engine has finished leaving the room"/>
 		</Binding>
 		
-		<Binding name="ShowChatBubble" class="uk.co.dubit.platform.scriptEngine.behaviour.types.world.ShowBubble" alias="ShowBubble">
-			<Description><![CDATA[
-					Shows a chat bubble. By default the chat bubble will appear above the players avatar. If the gameObject attribute is set, the chat bubble will appear above the gameObject.
-				]]></Description>
-			<Attribute required="true" name="message" type="String" description="The message to show in the chat bubble"/>
-			<Attribute required="false" name="displayTime" type="Number" defaultValue="10000" description="The time in milliseconds that the bubble stays on the screen"/>
-			<Attribute required="false" name="embedFonts" type="Boolean" defaultValue="false"/>
-			<Attribute required="false" name="gameObject" type="GameObject" defaultValue="{Room.player}" description="The game object the speech bubble will appear above. By default the bubble will appear above the player"/>
-			<Attribute required="false" name="fitToScreen" type="Boolean" defaultValue="false" description="If true the bubble will not slide off the edge of visible area"/>
-			<Attribute required="false" name="moveTail" type="Boolean" defaultValue="true" description="If the bubble is fitted to screen this attribute will move the bubble tail to follow the player"/>
-			<Attribute required="false" name="screenBuffer" type="Number" defaultValue="10" description="How far the bubble should stop from the edge of the screen"/>
-			<Attribute required="false" name="maxWidth" type="Number" defaultValue="650" description="The max width for the text field. If the text is wider the bubble will span multile lines"/>
-			<Attribute required="false" name="bubbleClass" type="String" defaultValue="com.dubitplatform.world.avatar.ChatBubble"/>
-			<Attribute required="false" name="useServer" defaultValue="{Properties.[setting.useServer]}" description="Whether to broadcast this message to other users in the room"/>
-		</Binding>
-		
 		<Binding name="PauseClock" class="uk.co.dubit.platform.scriptEngine.behaviour.types.world.PauseClock"/>
 		<Binding name="ResumeClock" class="uk.co.dubit.platform.scriptEngine.behaviour.types.world.ResumeClock"/>
 		
@@ -320,17 +311,11 @@
 			<Attribute name="targetY" description="The target y coordinate" type="Number" required="false"/>
 		</Binding>
 	
-		<GameObjectBinding name="MovementController" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.ActorMouseMovementProxy" alias="MouseMovementController">
-			<Attribute name="directions" defaultValue="8" description="The number of directions avatars can walk" type="Number" required="false"/>
-			<Attribute name="yVelocityScale" defaultValue="0.5" description="For rooms with perspective, when walking up the screen the avatars should move more slowly. This value determines how much slower. A value of 0.5 moves at half the speed." type="Number" required="false"/>
-			<Attribute name="id" defaultValue="movementController" type="String" required="false"/>
-		</GameObjectBinding>
-	
 		<Binding name="KeyboardController" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.KeyboardMovementProxy" />
 	
 	</Package>
 	
-	<!-- SHOP - NOT DOCUMENTED -->
+	<!-- SHOP -->
 	<Package name="Shops">
 		<GameObjectBinding name="Shops" class="uk.co.dubit.platform.components.catalogue.Shops">
 			<Events>
@@ -831,66 +816,58 @@
 	</Package>
 	
 	<!-- DISPLAY OBJECT BINDINGS -->
+	
+	<Binding name="CreateChatBubble" class="uk.co.dubit.platform.scriptEngine.behaviour.types.world.CreateChatBubble" />
+	
 	<Package name="Scene">
-		<GameObjectBinding name="Scene" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.RenderGameObject">
+		<GameObjectBinding name="Scene" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.SceneRenderObject">
 			<Attribute name="viewportHeight" defaultValue="{Properties.[scene-viewportHeight]}" required="true" description="The visible height of the scene"/>
 			<Attribute name="viewportWidth" defaultValue="{Properties.[scene-viewportWidth]}" required="true" description="The visible width of the scene"/>
-			
-			<Attribute name="displayObjectClass" defaultValue="uk.co.dubit.graphics.render2D.Scene" />
-		</GameObjectBinding>
-		
-		<GameObjectBinding name="DisplayObject2D" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.MovingGameObject">
-			<Attribute name="displayObjectClass" defaultValue="uk.co.dubit.graphics.render2D.DisplayObject2D" />
 			<Attribute name="toolTipClass" defaultValue="com.dubitplatform.world.WorldToolTip" />
-			<Events>
-				<Event name="OnClick" description="Fired when the player clicks on a mouseEnabled DisplayObject">
-					<Atttribute name="x" type="number" description="The x position of the mouse"/>
-					<Atttribute name="y" type="number" description="The x position of the mouse"/>
-				</Event>
-				<Event name="OnOver" description="Fired when the player's mouse rolls over a mouseEnabled DisplayObject">
-					<Atttribute name="x" type="number" description="The x position of the mouse"/>
-					<Atttribute name="y" type="number" description="The x position of the mouse"/>
-				</Event>
-				<Event name="OnMouseOut" description="Fired when the player's mouse rolls out of mouseEnabled DisplayObject">
-					<Atttribute name="x" type="number" description="The x position of the mouse"/>
-					<Atttribute name="y" type="number" description="The x position of the mouse"/>
-				</Event>
-				<Event name="OnMouseOver" description="Fired when the player's mouse rolls over a mouseEnabled DisplayObject">
-					<Atttribute name="x" type="number" description="The x position of the mouse"/>
-					<Atttribute name="y" type="number" description="The x position of the mouse"/>
-				</Event>
-				<Event name="OnMouseUp" description="Fired when the player releases the mouse click over a mouseEnabled DisplayObject">
-					<Atttribute name="x" type="number" description="The x position of the mouse"/>
-					<Atttribute name="y" type="number" description="The x position of the mouse"/>
-				</Event>
-				<Event name="OnMouseDown" description="Fired when the player pressed the mouse button over a mouseEnabled DisplayObject">
-					<Atttribute name="x" type="number" description="The x position of the mouse"/>
-					<Atttribute name="y" type="number" description="The x position of the mouse"/>
-				</Event>
-			</Events>
+			
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingScene" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashScene" />
 		</GameObjectBinding>
 		
-		<GameObjectBinding name="ParallaxLayer" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.RenderGameObject">
-			<Attribute name="displayObjectClass" defaultValue="uk.co.dubit.graphics.render2D.ParallaxLayer" />
+		<GameObjectBinding name="DisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.RenderGameObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashDisplayObject" />
 		</GameObjectBinding>
 		
-		<GameObjectBinding name="ZSortingDisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.RenderGameObject">
-			<Attribute name="displayObjectClass" defaultValue="uk.co.dubit.graphics.render2D.ZSortingDisplayObject" />
+		<GameObjectBinding name="MovieClip" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.RenderGameObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingMovieClipDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashMovieClipDisplayObject" />
 		</GameObjectBinding>
 		
-		<GameObjectBinding name="CubeDisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.RenderGameObject" >
-			<Attribute name="displayObjectClass" defaultValue="uk.co.dubit.graphics.render2D.cube.CubeDisplayObject" />
+		<GameObjectBinding name="ParallaxLayer" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.ParallaxRenderObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashDisplayObject" />
 		</GameObjectBinding>
 		
-		<GameObjectBinding name="CubeSortingDisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.RenderGameObject">
-			<Attribute name="displayObjectClass" defaultValue="uk.co.dubit.graphics.render2D.cube.CubeSortingDisplayObject" />
+		<GameObjectBinding name="DraggableDisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.DraggableRenderObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashDisplayObject" />
 		</GameObjectBinding>
-
-		<Binding name="UpdateCollisionData" class="uk.co.dubit.platform.components.path.behaviours.UpdateCollisionData" />
-		<Binding name="ShowPathNodes" class="uk.co.dubit.platform.components.path.behaviours.ShowPathNodes" />
-
-		<Binding name="UpdateCollisionData" class="uk.co.dubit.platform.components.path.behaviours.UpdateCollisionData" />
-		<Binding name="ShowPathNodes" class="uk.co.dubit.platform.components.path.behaviours.ShowPathNodes" />
+		
+		<GameObjectBinding name="DepthSortingLayer" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.DepthSortingRenderObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashDisplayObject" />
+		</GameObjectBinding>
+		
+		<GameObjectBinding name="TrackingDisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.TrackingRenderObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashDisplayObject" />
+		</GameObjectBinding>
+		
+		<GameObjectBinding name="TextDisplayObject" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.TrackingRenderObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingTextDisplayObject" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashTextDisplayObject" />
+		</GameObjectBinding>
+		
+		<GameObjectBinding name="ChatBubble" class="uk.co.dubit.platform.scriptEngine.gameObject.types.render.RenderGameObject">
+			<Attribute name="starlingDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.starling.StarlingChatBubble" />
+			<Attribute name="flashDisplayObjectClass" defaultValue="uk.co.dubit.graphics.type.flash.FlashChatBubble" />
+		</GameObjectBinding>
 	</Package>
 	
 		<!-- FILTERS -->
@@ -963,22 +940,16 @@
 	<!-- PLAYER -->
 	<Package name="Avatar">
 		<GameObjectBinding name="Character" class="uk.co.dubit.platform.scriptEngine.gameObject.types.avatar.Character" />
-		<GameObjectBinding name="Action" class="uk.co.dubit.platform.scriptEngine.gameObject.types.actions.Action"/>
 		
-		<GameObjectBinding name="Stand" class="uk.co.dubit.platform.scriptEngine.gameObject.types.actions.Action">
-			<Attribute required="true" name="priority" type="number" defaultValue="1" description="test"/>
-			<Attribute required="true" name="playModeFactory" type="string" defaultValue="playOnce" description="test"/>
-			<Attribute required="true" name="className" type="string" defaultValue="uk.co.dubit.graphics.render2D.actions.Stand" description="test"/>
-		</GameObjectBinding>
+		<Binding name="Animations" factory="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectFactory" class="uk.co.dubit.platform.scriptEngine.gameObject.types.animations.Animations"/>
+		<Binding name="Animation" factory="uk.co.dubit.platform.scriptEngine.node.ScriptNodeFactory" class="uk.co.dubit.platform.scriptEngine.gameObject.types.animations.Animation"/>
+		<Binding name="StartAnimation" class="uk.co.dubit.platform.components.animation.behaviours.StartAnimation"/>
+		<Binding name="SetStationaryAnimation" class="uk.co.dubit.platform.components.animation.behaviours.SetStationaryAnimation"/>
+		<Binding name="SetMovingAnimation" class="uk.co.dubit.platform.components.animation.behaviours.SetMovingAnimation"/>
 		
-		<GameObjectBinding name="Walk" class="uk.co.dubit.platform.scriptEngine.gameObject.types.actions.Action">
-			<Attribute required="true" name="priority" type="number" defaultValue="2" description="test"/>
-			<Attribute required="true" name="playModeFactory" type="string" defaultValue="playOnce" description="test"/>
-			<Attribute required="true" name="className" type="string" defaultValue="uk.co.dubit.graphics.render2D.actions.Walk" description="test"/>
-		</GameObjectBinding>
-		
-		<GameObjectBinding name="Actions" class="uk.co.dubit.platform.scriptEngine.gameObject.types.actions.ActionsNode"/>
-		<Binding name="DesireAction" class="uk.co.dubit.platform.scriptEngine.behaviour.types.actions.DesireAction"/>
+		<Binding name="Movements" factory="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectFactory" class="uk.co.dubit.platform.components.movement.gaml.Movements" />
+		<Binding name="Movement" factory="uk.co.dubit.platform.scriptEngine.gameObject.GameObjectFactory" class="uk.co.dubit.platform.components.movement.gaml.MovementGameObject" />
+		<Binding name="StartMovement" class="uk.co.dubit.platform.components.movement.behaviours.StartMovement" />
 	</Package>
 	
 	<!-- MAP -->

@@ -31,55 +31,55 @@
 		<ParallaxLayer assetID="sky_asset" xm="0.4" ym="0.4" />
 		
  		<ParallaxLayer mouseEnabled="false" xm="0.6" ym="0.6">
-			<DisplayObject2D assetID="far_trees_asset" x="0" y="78"  />
+			<DisplayObject assetID="far_trees_asset" x="0" y="78"  />
 		</ParallaxLayer>
 		
 		<ParallaxLayer mouseEnabled="false" xm="0.8" ym="0.8">
-			<DisplayObject2D assetID="mid_trees_asset" x="131" y="135"  />
+			<DisplayObject assetID="mid_trees_asset" x="131" y="135"  />
 		</ParallaxLayer>
 	
-		<DisplayObject2D assetID="background_asset"  />
+		<DisplayObject assetID="background_asset"  />
 		
-		<DisplayObject2D id="click" assetID="click_asset" mouseEnabled="true" clickThrough="true" alpha="0"/>
-		<DisplayObject2D id="door" assetID="door_asset" x="911" y="467" distance="80" alpha="1"/>
+		<DisplayObject id="click" assetID="click_asset" mouseEnabled="true" clickThrough="true" alpha="0"/>
+		<DisplayObject id="door" assetID="door_asset" x="911" y="467" distance="80" alpha="1"/>
 	 
-		<ZSortingDisplayObject id="furniture">
-			<DisplayObject2D id="well" assetID="well_asset" x="1247" y="({Room.well.originY}+{429})" originY="140" mouseEnabled="true" useHandCursor="true" scale="0.95" tooltip="Ye Olde Well"/>
-			<DisplayObject2D id="house" assetID="house_asset" x="1003" y="({Room.house.originY}+{144})" originX="269" originY="354" />
-			<DisplayObject2D id="window" assetID="window_asset" x="867" y="({Room.window.originY}+{375})" originY="154" />
-			<DisplayObject2D id="egg" assetID="egg_asset" x="630" y="({Room.egg.originY}+{486})" originX="43" originY="50" />
- 			<DisplayObject2D id="sign" assetID="sign_asset" x="151" y="({Room.sign.originY}+{536})" originX="74" originY="211" frame="0"/>
-			<DisplayObject2D id="mushroom_12" assetURL="images/example_room/mushroom.swf" x="924" y="({Room.mushroom_10.originY}+{570})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.6" clicked="false" tooltip="Musical Mushroom" rotate="325"/>
-			<DisplayObject2D id="mushroom_11" assetURL="images/example_room/mushroom.swf" x="1144" y="({Room.mushroom_10.originY}+{400})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.4" clicked="false" tooltip="Musical Mushroom" rotate="25"/>
-			<DisplayObject2D id="mushroom_10" assetURL="images/example_room/mushroom.swf" x="1324" y="({Room.mushroom_10.originY}+{645})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.7" clicked="false" tooltip="Musical Mushroom" />
- 			<DisplayObject2D id="mushroom_8" assetID="mushroom_8_asset" x="1481" y="({Room.mushroom_8.originY}+{576})" originX="12" originY="19" /> -->
-			<DisplayObject2D id="mushroom_7" assetURL="images/example_room/mushroom.swf" x="1414" y="({Room.mushroom_7.originY}+{440})" originX="28" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.5" clicked="false" tooltip="Musical Mushroom" />
- 			<DisplayObject2D id="mushroom_6" assetID="mushroom_6_asset" x="1416" y="({Room.mushroom_6.originY}+{565})" originX="17" originY="29" />
- 			<DisplayObject2D id="mushroom_5" assetID="mushroom_5_asset" x="600" y="({Room.mushroom_5.originY}+{530})" originX="12" originY="20" />
-			<DisplayObject2D id="mushroom_4" assetURL="images/example_room/mushroom.swf" x="532" y="({Room.mushroom_4.originY}+{394})" originX="28" originY="146" mouseEnabled="true" useHandCursor="true" mouseChildren="false" clickThrough="true" scale="0.5" clicked="false" tooltip="Musical Mushroom" />
-			<DisplayObject2D id="mushroom_3" assetID="mushroom_3_asset" x="534" y="({Room.mushroom_3.originY}+{519})" originX="17" originY="29" />
-			<DisplayObject2D id="mushroom_2" assetID="mushroom_2_asset" x="176" y="({Room.mushroom_2.originY}+{698})" originX="25" originY="41" />
-			<DisplayObject2D id="mushroom_1" assetID="mushroom_1_asset" x="125" y="({Room.mushroom_1.originY}+{699})" originX="30" originY="56" />
-			<DisplayObject2D id="stump" assetID="stump_asset" x="1006" y="({Room.stump.originY}+{648})" originX="88" originY="132" />
-			<DisplayObject2D id="bridge_front" assetID="bridge_front_asset" x="320" y="842" originY="230"  />
-			<DisplayObject2D id="bridge_back" assetID="bridge_back_asset" x="277" y="635" originY="96"  />
-			<DisplayObject2D id="flowers_4" assetID="flowers_4_asset" x="873" y="767" originX="42" originY="63" />
-			<DisplayObject2D id="flowers_3" assetID="flowers_3_asset" x="781" y="954" originX="156" originY="172" />
-			<DisplayObject2D id="flowers_2" assetID="flowers_2_asset" x="128" y="677" originX="35" originY="60" />
-			<DisplayObject2D id="flowers_1" assetID="flowers_1_asset" x="226" y="926" originX="147" originY="178" />
-		</ZSortingDisplayObject>
+		<DepthSortingLayer id="furniture">
+			<MovieClip id="well" assetID="well_asset" x="1247" y="({Room.well.originY}+{429})" originY="140" mouseEnabled="true" useHandCursor="true" scale="0.95" tooltip="Ye Olde Well"/>
+			<DisplayObject id="house" assetID="house_asset" x="1003" y="({Room.house.originY}+{144})" originX="269" originY="354" />
+			<MovieClip id="window" assetID="window_asset" x="867" y="({Room.window.originY}+{375})" originY="154" />
+			<DisplayObject id="egg" assetID="egg_asset" x="630" y="({Room.egg.originY}+{486})" originX="43" originY="50" />
+ 			<MovieClip id="sign" assetID="sign_asset" x="151" y="({Room.sign.originY}+{536})" originX="74" originY="211" frame="0"/>
+			<MovieClip id="mushroom_12" assetURL="images/example_room/mushroom.swf" x="924" y="({Room.mushroom_10.originY}+{570})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" clickThrough="true" scale="0.6" clicked="false" tooltip="Musical Mushroom" rotate="325"/>
+			<MovieClip id="mushroom_11" assetURL="images/example_room/mushroom.swf" x="1144" y="({Room.mushroom_10.originY}+{400})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" clickThrough="true" scale="0.4" clicked="false" tooltip="Musical Mushroom" rotate="25"/>
+			<MovieClip id="mushroom_10" assetURL="images/example_room/mushroom.swf" x="1324" y="({Room.mushroom_10.originY}+{645})" originX="71" originY="146" mouseEnabled="true" useHandCursor="true" clickThrough="true" scale="0.7" clicked="false" tooltip="Musical Mushroom" />
+ 			<DisplayObject id="mushroom_8" assetID="mushroom_8_asset" x="1481" y="({Room.mushroom_8.originY}+{576})" originX="12" originY="19" /> -->
+			<MovieClip id="mushroom_7" assetURL="images/example_room/mushroom.swf" x="1414" y="({Room.mushroom_7.originY}+{440})" originX="28" originY="146" mouseEnabled="true" useHandCursor="true" clickThrough="true" scale="0.5" clicked="false" tooltip="Musical Mushroom" />
+ 			<DisplayObject id="mushroom_6" assetID="mushroom_6_asset" x="1416" y="({Room.mushroom_6.originY}+{565})" originX="17" originY="29" />
+ 			<DisplayObject id="mushroom_5" assetID="mushroom_5_asset" x="600" y="({Room.mushroom_5.originY}+{530})" originX="12" originY="20" />
+			<MovieClip id="mushroom_4" assetURL="images/example_room/mushroom.swf" x="532" y="({Room.mushroom_4.originY}+{394})" originX="28" originY="146" mouseEnabled="true" useHandCursor="true" clickThrough="true" scale="0.5" clicked="false" tooltip="Musical Mushroom" />
+			<DisplayObject id="mushroom_3" assetID="mushroom_3_asset" x="534" y="({Room.mushroom_3.originY}+{519})" originX="17" originY="29" />
+			<DisplayObject id="mushroom_2" assetID="mushroom_2_asset" x="176" y="({Room.mushroom_2.originY}+{698})" originX="25" originY="41" />
+			<DisplayObject id="mushroom_1" assetID="mushroom_1_asset" x="125" y="({Room.mushroom_1.originY}+{699})" originX="30" originY="56" />
+			<DisplayObject id="stump" assetID="stump_asset" x="1006" y="({Room.stump.originY}+{648})" originX="88" originY="132" />
+			<DisplayObject id="bridge_front" assetID="bridge_front_asset" x="320" y="842" originY="230"  />
+			<DisplayObject id="bridge_back" assetID="bridge_back_asset" x="277" y="635" originY="96"  />
+			<DisplayObject id="flowers_4" assetID="flowers_4_asset" x="873" y="767" originX="42" originY="63" />
+			<DisplayObject id="flowers_3" assetID="flowers_3_asset" x="781" y="954" originX="156" originY="172" />
+			<DisplayObject id="flowers_2" assetID="flowers_2_asset" x="128" y="677" originX="35" originY="60" />
+			<DisplayObject id="flowers_1" assetID="flowers_1_asset" x="226" y="926" originX="147" originY="178" />
+		</DepthSortingLayer>
 		
-		<DisplayObject2D id="coll" assetID="coll_1_asset" x="912" y="517" collidable="true" distance="170" alpha="0"/>	
+		<DisplayObject id="coll" assetID="coll_1_asset" x="912" y="517" collidable="true" distance="170" alpha="0"/>	
 		
 		<ParallaxLayer mouseEnabled="false" xm="1.2" ym="1">
-			<DisplayObject2D assetID="foreground_tree_3_asset" x="1160" y="0" />
-			<DisplayObject2D assetID="foreground_tree_2_asset" x="859" y="0" />
-			<DisplayObject2D assetID="foreground_tree_1_asset" x="0" y="0"  />
-			<DisplayObject2D assetID="fore_left_asset" x="0" y="709"  />
-			<DisplayObject2D assetID="fore_right_asset" x="712" y="555" />
+			<DisplayObject assetID="foreground_tree_3_asset" x="1160" y="0" />
+			<DisplayObject assetID="foreground_tree_2_asset" x="859" y="0" />
+			<DisplayObject assetID="foreground_tree_1_asset" x="0" y="0"  />
+			<DisplayObject assetID="fore_left_asset" x="0" y="709"  />
+			<DisplayObject assetID="fore_right_asset" x="712" y="555" />
 		</ParallaxLayer>
 				
-		<ZSortingDisplayObject id="playerMessages"/>
+		<DepthSortingLayer id="playerMessages"/>
 	</Scene>
 	
 	<Assets>

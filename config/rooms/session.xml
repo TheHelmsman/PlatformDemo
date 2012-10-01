@@ -16,6 +16,7 @@
 	<xi:include href="session_includes/menus.xml"/>
 	<xi:include href="session_includes/meters.xml"/>
 	<xi:include href="session_includes/minigames.xml"/>
+	<xi:include href="session_includes/movements.xml"/>
 	<xi:include href="session_includes/notifications.xml"/>
 	<xi:include href="session_includes/quests.xml"/>
 	<xi:include href="session_includes/quick_chats.xml"/>

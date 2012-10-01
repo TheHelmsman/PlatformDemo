@@ -3,8 +3,7 @@
 	
 	<Map skin="com.dubitplatform.views.map.MapView" skinContainer="generic">
 		<Location name="Example Room 1" roomID="example_room" />
-		<Location name="Example Room 2" roomID="example_room_2" />
-		
+	
 		<Triggers>
 			<onChangeRoom>
 				<ChangeRoom roomID="{Event.roomID}">
